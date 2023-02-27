@@ -68,9 +68,11 @@ class Weather
             // receberá o body da resposta como array para manipularmos mais facilmente
             $data = json_decode($response->getBody(), true);
 
-            echo '<pre>';
-            print_r($data);
-            exit;
+            // retornamos os cards
+            return [
+                'cardsWeather' => $this->renderDayCard($data['daily']),
+                /// FAZER OS CARDS DOS ALERTAS
+            ];
         } catch (\Throwable $th) {
 
             echo '<pre>';
@@ -115,6 +117,22 @@ class Weather
 
             // velocidade do vento em km/h
             $kmph = number_format(3.6 * $day['wind_speed']);
-        }
+
+            // começamos a montar o card (concatenamos)
+            $cardDiv .= '<div class="col-md-3 mb-2">'; // abertura da col-md-3
+
+            $cardDiv .= '<div class="card">'; // abertura do card
+
+            $cardDiv .= "<h5 class='card-title p-2'>{$date}</h5>";
+
+            $cardDiv .= '</div>'; // fechamento do card
+
+            $cardDiv .= '</div>'; // fechamento da col-md-3
+
+        } // final foreach
+
+
+        // retornamos os cards
+        return $cardDiv;
     }
 }
