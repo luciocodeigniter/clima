@@ -38,7 +38,7 @@ class Home extends BaseController
         $longitude = $this->request->getGet('longitude');
 
         // realizamos a requisição à API openweathermap
-        $weather = Factories::class(Weather::class)->get('-25.287864999734', '-49.4504808103584');
+        $weather = Factories::class(Weather::class)->get(latitude: $latitude, longitude: $longitude);
 
         // retornamos para o front
         return $this->response->setStatusCode(200)->setJSON([

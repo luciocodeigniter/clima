@@ -70,7 +70,7 @@ class Weather
 
             // retornamos os cards
             return [
-                'cardsWeather' => $this->renderDayCard($data['daily']),
+                'cardsWeather' => $this->renderDayCard($data['daily'] ?? []),
                 /// FAZER OS CARDS DOS ALERTAS
             ];
         } catch (\Throwable $th) {
@@ -127,6 +127,24 @@ class Weather
 
             // crio o ícone para o clima do dia
             $cardDiv .= $this->renderIcon($day['weather'][0]);
+
+            $cardDiv .= '<div class="card-body">'; // abertura do card-body
+
+            $cardDiv .= "<h3 class='card-title'>{$day['weather'][0]['description']}</h3>";
+
+            $cardDiv .= "<p class='card-text'>Máxima de: {$day['temp']['max']}&deg;C</p>";
+            $cardDiv .= "<p class='card-text'>Mínima de: {$day['temp']['min']}&deg;C</p>";
+            $cardDiv .= "<p class='card-text'>Sensação térmica de: {$day['feels_like']['day']}&deg;C</p>";
+            $cardDiv .= "<p class='card-text'>Pressão: {$day['pressure']}mb</p>";
+            $cardDiv .= "<p class='card-text'>Umidade do ar: {$day['humidity']}%</p>";
+            $cardDiv .= "<p class='card-text'>Index UV: {$day['uvi']}</p>";
+            $cardDiv .= "<p class='card-text'>Chance de chuva: {$preciptation}%</p>";
+            $cardDiv .= "<p class='card-text'>Velocidade do vento: {$kmph} km/h</p>";
+
+            $cardDiv .= "<p class='card-text'>Nascer do sol: {$sunrise}</p>";
+            $cardDiv .= "<p class='card-text'>Pôr do sol: {$sunset}</p>";
+
+            $cardDiv .= '</div>'; // fechamento do card-body
 
             $cardDiv .= '</div>'; // fechamento do card
 
