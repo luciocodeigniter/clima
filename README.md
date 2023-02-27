@@ -10,7 +10,7 @@
 - Codeigniter 4.3.2
 - Laragon como Servidor Local
 
-## Installation
+## Instalação
 
 - Realize o clone desse projeto dentro do diretório `www` do Laragon
 - Agora entre na raiz do projeto, nesse caso `clima`
