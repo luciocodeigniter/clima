@@ -70,7 +70,7 @@
             </div>
 
 
-            <div class="col-md-4">
+            <div class="col-md-4 pt-5">
 
                 <!-- Mapa -->
 
@@ -93,6 +93,10 @@
 
     <!-- Busca o clima -->
     <script>
+        // variáveis de escopo global
+        let map, marker;
+
+
         // obtém os dados do clima
         const fetchWeather = () => {
 
@@ -139,6 +143,9 @@
                 document.getElementById('cardsWeather').innerHTML = data.cardsWeather;
                 document.getElementById('cardsWeatherAlerts').innerHTML = data.cardsWeatherAlerts;
 
+                // adiciono o marcador no mapa
+                marker = addLocationMap(latitude, longitude);
+
 
             }).catch((error) => {
 
@@ -148,20 +155,45 @@
             });
 
 
-        }
+        };
 
+        // captura o evento click no botão
         document.getElementById('btnGetWeather').addEventListener('click', fetchWeather);
+
+        // inicializa o mapa
+        const initializeMap = () => {
+
+            map = L.map('map').setView([0, 0], 0);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            return map;
+        };
+
+
+        // adiciona o marcador no mapa
+        const addLocationMap = (latitude, longitude) => {
+
+            // já existe um marcador no mapa?
+            if (marker) {
+
+                // removemos
+                map.removeLayer(marker);
+            }
+
+            marker = L.marker([latitude, longitude]).addTo(map);
+            map.setView([latitude, longitude], 5);
+
+            return marker;
+        };
+
+        // invoco initializeMap para renderizar o mapa
+        initializeMap();
     </script>
 
-
-    <script>
-        var map = L.map('map').setView([0, 0], 0);
-
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-    </script>
 
 </body>
 
