@@ -118,12 +118,21 @@
             }).then((response) => {
 
                 // trato a resposta
+
+                return response.json();
+
             }).then((data) => {
 
                 // trabalho com os dados retornados
+
+
+
+
             }).catch((error) => {
 
                 // trato os erros
+
+                document.getElementById('cardsWeather').innerHTML = `<div class="alert alert-danger">Não foi possível obter os dados do clima: ${error}</div>`;
             });
 
 

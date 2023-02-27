@@ -22,6 +22,18 @@ class Home extends BaseController
      */
     public function weather()
     {
+
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        /** @var string latitude enviada no request */
+        $latitude = $this->request->getGet('latitude');
+
+        /** @var string longitude enviada no request */
+        $longitude = $this->request->getGet('longitude');
+
         print_r($this->request->getGet());
         exit;
     }
