@@ -70,8 +70,8 @@ class Weather
 
             // retornamos os cards
             return [
-                'cardsWeather' => $this->renderDayCard($data['daily'] ?? []),
-                /// FAZER OS CARDS DOS ALERTAS
+                'cardsWeather'       => $this->renderDayCard($data['daily'] ?? []),
+                'cardsWeatherAlerts' => $this->renderCardAlert($data['alerts'] ?? [])
             ];
         } catch (\Throwable $th) {
 
@@ -154,6 +154,67 @@ class Weather
 
 
         // retornamos os cards
+        return $cardDiv;
+    }
+
+
+    /**
+     * Renderiza os cards dos alertas meteorológicos
+     *
+     * @param array $alerts
+     * @return string
+     */
+    public function renderCardAlert(array $alerts): string
+    {
+        // temos alertas para tratar?
+        if (empty($alerts)) {
+
+            // temos algum dado no array diário?
+            if (empty($daily)) {
+
+                return '<div class="col-md-12">
+                            <div class="alert alert-info">não há alertas registrados.</div>
+                        </div>';
+            }
+        }
+
+
+        // valor inicial dos cards
+        $cardDiv = '<div class="col-md-12">
+                        <div class="alert alert-warning">Alertas meteorológicos.</div>
+                    </div>';
+
+
+        foreach ($alerts as $alert) {
+
+            $start = date('d/m/Y H:i', $alert['start']);
+            $end = date('d/m/Y H:i', $alert['end']);
+
+
+            // começamos a montar o card (concatenamos)
+            $cardDiv .= '<div class="col-md-6 mb-2">'; // abertura da col-md-3
+
+            $cardDiv .= '<div class="card">'; // abertura do card
+
+            $cardDiv .= "<h5 class='card-title p-2'>{$alert['sender_name']} informa: </h5>";
+
+            $cardDiv .= '<div class="card-body">'; // abertura do card-body
+
+            $cardDiv .= "<h3 class='card-title'>{$alert['event']}</h3>";
+
+            $cardDiv .= "<p class='card-text'>{$alert['description']}</p>";
+            $cardDiv .= "<p class='card-text'>Iniciando na data de: {$start}</p>";
+            $cardDiv .= "<p class='card-text'>Finalizando na date de: {$end}</p>";
+
+            $cardDiv .= '</div>'; // fechamento do card-body
+
+            $cardDiv .= '</div>'; // fechamento do card
+
+            $cardDiv .= '</div>'; // fechamento da col-md-3
+
+        }
+
+
         return $cardDiv;
     }
 

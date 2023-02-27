@@ -42,8 +42,8 @@ class Home extends BaseController
 
         // retornamos para o front
         return $this->response->setStatusCode(200)->setJSON([
-            'cardsWeather' => $weather['cardsWeather'],
-            'cardsWeatherAlerts' => []
+            'cardsWeather'       => $weather['cardsWeather'],
+            'cardsWeatherAlerts' => $weather['cardsWeatherAlerts']
         ]);
     }
 }

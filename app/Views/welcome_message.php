@@ -126,6 +126,7 @@
                 // trabalho com os dados retornados
 
                 document.getElementById('cardsWeather').innerHTML = data.cardsWeather;
+                document.getElementById('cardsWeatherAlerts').innerHTML = data.cardsWeatherAlerts;
 
 
             }).catch((error) => {
