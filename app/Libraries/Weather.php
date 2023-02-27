@@ -125,6 +125,9 @@ class Weather
 
             $cardDiv .= "<h5 class='card-title p-2'>{$date}</h5>";
 
+            // crio o ícone para o clima do dia
+            $cardDiv .= $this->renderIcon($day['weather'][0]);
+
             $cardDiv .= '</div>'; // fechamento do card
 
             $cardDiv .= '</div>'; // fechamento da col-md-3
@@ -134,5 +137,18 @@ class Weather
 
         // retornamos os cards
         return $cardDiv;
+    }
+
+
+    /**
+     * Renderiza a imagem do ícone
+     *
+     * @param array $iconInformation informações do ícone
+     * @link https://openweathermap.org/weather-conditions#How-to-get-icon-URL
+     * @return string
+     */
+    public function renderIcon(array $iconInformation): string
+    {
+        return img(src: "http://openweathermap.org/img/wn/{$iconInformation['icon']}@4x.png");
     }
 }
