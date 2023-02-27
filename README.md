@@ -1,62 +1,22 @@
-# CodeIgniter 4 Application Starter
+# Consulta climática e geolocalização com Codeigniter 4
 
-## What is CodeIgniter?
+- Nesse projeto foi realizada a integração à API Openweathermap para obtenção dos dados climáticos de acordo com as coordenadas de latitude e longitude.
+- Uma vez que os dados de clima são obtidos, é feita a geolocalização desse ponto no mapa na aplicação.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Dados do ambiente
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- Utilizado o composer como gerenciador de dependências PHP
+- Desenvolvido com o PH 8.1
+- Codeigniter 4.3.2
+- Laragon como Servidor Local
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Installation
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+- Realize o clone desse projeto dentro do diretório `www` do Laragon
+- Agora entre na raiz do projeto, nesse caso `clima`
+- Para instalar o Codeigniter, rode na raiz do projeto o seguinde comando: `composer install`
+- Renomeie o arquivo `env-exemple` para `.env`
+- No arquivo `.env`, coloque a sua chave da API (https://openweathermap.org/) e altere a o valor de `WEATHER_API_KEY`: 
+- Em seguida, com o Laragon iniciado, acesse no seu navegador `http://clima.test/`
 
-## Installation & updates
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
-
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
-
-## Setup
-
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
-
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
