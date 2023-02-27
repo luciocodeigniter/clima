@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Weather;
+use CodeIgniter\Config\Factories;
+
 class Home extends BaseController
 {
     /**
@@ -23,16 +26,18 @@ class Home extends BaseController
     public function weather()
     {
 
-        if (!$this->request->isAJAX()) {
+        // if (!$this->request->isAJAX()) {
 
-            return redirect()->back();
-        }
+        //     return redirect()->back();
+        // }
 
         /** @var string latitude enviada no request */
         $latitude = $this->request->getGet('latitude');
 
         /** @var string longitude enviada no request */
         $longitude = $this->request->getGet('longitude');
+
+        Factories::class(Weather::class)->get('-25.287864999734', '-49.4504808103584');
 
         print_r($this->request->getGet());
         exit;
