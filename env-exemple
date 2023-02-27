@@ -11,3 +11,7 @@ CI_ENVIRONMENT = development
 app.baseURL = 'http://clima.test/'
 app.indexPage = ''
 
+#--------------------------------------------------------------------
+# Openweathermap API KEY
+#--------------------------------------------------------------------
+WEATHER_API_KEY = 'sua-chave-da-api'
