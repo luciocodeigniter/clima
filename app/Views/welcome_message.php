@@ -82,19 +82,35 @@
 
 
     <script>
+        // obtém os dados do clima
         const fetchWeather = () => {
 
+            // recuperamos os valores de latitude e longitude
             let latitude = document.getElementById('latitude').value;
             let longitude = document.getElementById('longitude').value;
 
+            // validamos
             if (!latitude || !longitude) {
 
+                // não validado.... adicionamos borda verlmelha nos inputs
                 document.getElementById('latitude').classList.add('border-danger');
                 document.getElementById('longitude').classList.add('border-danger');
                 return;
             }
 
-            alert(latitude + ' - ' + longitude);
+
+            // está validado... removemos as bordas vermelhas
+            document.getElementById('latitude').classList.remove('border-danger');
+            document.getElementById('longitude').classList.remove('border-danger');
+
+
+            // URL de requisição dos dados do clima
+            // /weather?latitude=-25.447317389782302&longitude=-49.31589829998408
+            let url = `<?php echo route_to('weather') ?>?latitude=${latitude}&longitude=${longitude}`;
+
+
+
+
 
         }
 
