@@ -109,7 +109,22 @@
             let url = `<?php echo route_to('weather') ?>?latitude=${latitude}&longitude=${longitude}`;
 
 
+            fetch(url, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            }).then((response) => {
 
+                // trato a resposta
+            }).then((data) => {
+
+                // trabalho com os dados retornados
+            }).catch((error) => {
+
+                // trato os erros
+            });
 
 
         }
