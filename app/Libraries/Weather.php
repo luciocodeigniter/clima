@@ -50,7 +50,27 @@ class Weather
             /**@var string endPoint que será requisitado */
             $endPoint = self::BASE_URL . '?' . http_build_query($params);
 
-            dd($endPoint);
+            // instanciando a classe Currequest
+            $client = \Config\Services::curlrequest();
+
+            // realizamos a requisição
+            $response = $client->request(method: 'GET', url: $endPoint);
+
+
+            // tivemos algum erro na requisição?
+            if ($response->getStatusCode() !== 200) {
+
+                return $response->getReasonPhrase();
+            }
+
+            // nesse ponto, tivemos sucesso na requisição. Portanto, damos sequência.
+
+            // receberá o body da resposta como array para manipularmos mais facilmente
+            $data = json_decode($response->getBody(), true);
+
+            echo '<pre>';
+            print_r($data);
+            exit;
         } catch (\Throwable $th) {
 
             echo '<pre>';
