@@ -92,7 +92,7 @@
             // validamos
             if (!latitude || !longitude) {
 
-                // não validado.... adicionamos borda verlmelha nos inputs
+                // não validado.... adicionamos borda vermelha nos inputs
                 document.getElementById('latitude').classList.add('border-danger');
                 document.getElementById('longitude').classList.add('border-danger');
                 return;
