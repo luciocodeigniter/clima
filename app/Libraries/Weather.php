@@ -80,4 +80,41 @@ class Weather
             // ATENÇÃO: o adequado é exibir uma mensagem genérica de erro
         }
     }
+
+
+    /**
+     * Renderiza os cards dos dias do clima
+     *
+     * @param array $daily array contento as informções diárias do clima
+     * @return string
+     */
+    public function renderDayCard(array $daily): string
+    {
+        // temos algum dado no array diário?
+        if (empty($daily)) {
+
+            return '<div class="col-md-12">
+                        <div class="alert alert-info">Não foram encontrados dados de clima para as coordenadas informadas.</div>
+                   </div>';
+        }
+
+
+        /**@var string receberá os cards do clima */
+        $cardDiv = '';
+
+        // percorremos o array
+        foreach ($daily as $day) {
+
+            // datas
+            $date = date('j, F, Y', $day['dt']); // 27, February, 2023
+            $sunrise = date('d/m/Y H:i', $day['sunrise']);
+            $sunset = date('d/m/Y H:i', $day['sunset']);
+
+            // chance de chuva
+            $preciptation = $day['pop'] * 100;
+
+            // velocidade do vento em km/h
+            $kmph = number_format(3.6 * $day['wind_speed']);
+        }
+    }
 }
